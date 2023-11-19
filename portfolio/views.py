@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Stock, Option, Portfolio
 
-# Create your views here.
+
+def index(request):
+    return render(request, 'portfolio/index.html', {})
