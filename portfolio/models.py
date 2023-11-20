@@ -13,7 +13,9 @@ class Stock(models.Model):
     
     def get_absolute_url(self):
         return reverse('stock-detail', args=[str(self.id)])
-    
+
+
+
 
 class Option(models.Model):
     symbol = models.CharField(max_length=32, unique=True)

@@ -1,0 +1,16 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+   
+    <h1>WatchList</h1>
+    <ul>
+        {% for stock in stock_list %}
+            <li>
+                <a href="{{ stock.get_absolute_url }}">{{ stock.symbol }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+
+{% endblock %}

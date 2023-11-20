@@ -14,10 +14,21 @@
           <div class="col-md-auto">
             
             {% block sidebar %}
+              <br/>
               <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-info" type="submit">Search</button>
               </form>
+              <br/>
+              <div class="list-group">
+                <a href="{% url 'index' %}" class="list-group-item list-group-item-action list-group-item-info">Home</a>
+
+                <a href="{% url 'stocks' %}" class="list-group-item list-group-item-action list-group-item-info">Watchlist</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-info">Calls</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-info">Puts</a>
+                
+               
+              </div>
             {% endblock %}
           </div>
           <div class="col">
