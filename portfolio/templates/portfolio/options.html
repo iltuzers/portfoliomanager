@@ -1,6 +1,56 @@
 {% extends "portfolio/base.html" %}
 
 {% block content %}
-    <h1> Option Detail</h1>
+    
+<h2>CALLS</h2>
+    <table class="table table-bordered table-info">
+        <thead>
+          <tr>
+            <th scope="col">Option Type</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Expiration Date</th>
+            <th scope="col">Days To Expiration</th>
+            <th scope="col">Strike</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Open Interest</th>
+            <th scope="col">Implied Volatility</th>
+            <th scope="col">Delta</th>
+            <th scope="col">Gamma</th>
+            <th scope="col">Theta</th>
+            <th scope="col">Vega</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            
+          {% for option in options %}
+          <tr>
+              <td>
+                {% if option.0 == 'p' %}
+                    Put
+                {% else %}
+                    Call
+                {% endif %}
+              </td>
+              <td>{{ option.1 }}</td>
+              <td>{{ option.2 }}</td>
+              <td>{{ option.3 }}</td>
+              <td>{{ option.4 }}</td>
+              <td>{{ option.5 }}</td>
+              <td>{{ option.6 }}</td>
+              <td>{{ option.7 }}</td>
+              <td>{{ option.8 }}</td>
+              <td>{{ option.9 }}</td>
+              <td>{{ option.10 }}</td>
+              <td>{{ option.11 }}</td>
+              
+          </tr>
+           {% endfor %}
+
+         
+        </tbody>
+      </table>
+
 {% endblock %}
+
 

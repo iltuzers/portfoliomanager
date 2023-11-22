@@ -2,9 +2,89 @@
 
 {% block content %}
 
-    <h1> Stock: {{ ticker }}</h1>
-    <p> Price: {{ price }} </p>
+    <h2>CALLS</h2>
+    <table class="table table-bordered table-info">
+        <thead>
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Expiration Date</th>
+            <th scope="col">Days To Expiration</th>
+            <th scope="col">Strike</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Open Interest</th>
+            <th scope="col">Implied Volatility</th>
+            <th scope="col">Delta</th>
+            <th scope="col">Gamma</th>
+            <th scope="col">Theta</th>
+            <th scope="col">Vega</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            
+          {% for call in calls %}
+          <tr>
+              <td>{{ call.0 }}</td>
+              <td>{{ call.1 }}</td>
+              <td>{{ call.2 }}</td>
+              <td>{{ call.3 }}</td>
+              <td>{{ call.4 }}</td>
+              <td>{{ call.5 }}</td>
+              <td>{{ call.6 }}</td>
+              <td>{{ call.7 }}</td>
+              <td>{{ call.8 }}</td>
+              <td>{{ call.9 }}</td>
+              <td>{{ call.10 }}</td>
+              
+          </tr>
+           {% endfor %}
 
-    <a href="#">Option List</a>
+         
+        </tbody>
+      </table>
+
+      <h2>PUTS</h2>
+    <table class="table table-bordered table-info">
+        <thead>
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Expiration Date</th>
+            <th scope="col">Days To Expiration</th>
+            <th scope="col">Strike</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Open Interest</th>
+            <th scope="col">Implied Volatility</th>
+            <th scope="col">Delta</th>
+            <th scope="col">Gamma</th>
+            <th scope="col">Theta</th>
+            <th scope="col">Vega</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+       
+
+          
+ {% for put in puts %}
+ <tr>
+  
+      <td> {{ put.0 }}</td>
+      <td> {{ put.1 }}</td>
+      <td> {{ put.2 }}</td>
+      <td> {{ put.3 }}</td>
+      <td> {{ put.4 }}</td>
+      <td> {{ put.5 }}</td>
+      <td> {{ put.6 }}</td>
+      <td> {{ put.7 }}</td>
+      <td> {{ put.8 }}</td>
+      <td> {{ put.9 }}</td>
+      <td> {{ put.10 }}</td>
+   
+ </tr>
+ {% endfor %}
+
+         
+        </tbody>
+      </table>
 
 {% endblock %}

@@ -2,14 +2,16 @@
 
 {% block content %}
    
-    <h1>WatchList</h1>
-    <ul>
+    <h1 style="color:rgb(124, 195, 207);">WatchList</h1>
+
+    <div class="list-group">
         {% for stock in stock_list %}
-            <li>
-                <a href="{{ stock.get_absolute_url }}">{{ stock.symbol }}</a>
-            </li>
+        <a href="{{ stock.get_absolute_url }}" class="list-group-item list-group-item-action" aria-current="true">
+            {{ stock.symbol }}
+        </a>
         {% endfor %}
-    </ul>
+        
+      </div>
 
 
 
