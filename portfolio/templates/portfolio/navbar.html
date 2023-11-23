@@ -6,15 +6,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Login</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'login' %}?next={{ request.path }}">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Register</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Logout</a>
-          </li>
+          {% endif %}
+          
           
         </ul>
         
