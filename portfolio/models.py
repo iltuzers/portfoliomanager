@@ -2,9 +2,14 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
+from datetime import date, timedelta
 
 class Stock(models.Model):
     symbol = models.CharField(max_length=32, unique=True)
+
+     # negative if short, positive if long
+    quantity = models.IntegerField(default=0)
+
     class Meta:
         ordering = ['symbol']
     
@@ -22,6 +27,10 @@ class Option(models.Model):
     underlying = models.ForeignKey(Stock, on_delete=models.CASCADE)
     expiration_date = models.DateField()
     strike = models.DecimalField(max_digits=10, decimal_places=2)
+
+    # negative if short, otherwise positive
+    quantity = models.IntegerField(default=0)
+
     OPTION_TYPE = (
         ('C', 'Call'),
         ('P', 'Put'),
@@ -36,6 +45,18 @@ class Option(models.Model):
         ordering = ['expiration_date', 'symbol', 'strike']
         unique_together = [['underlying', 'expiration_date', 'strike', 'option_type']]
     
+
+    @property
+    def is_expired(self):
+        """Determines if the option is expired."""
+        return bool(self.expiratation_date < date.today())
+    
+    @property
+    def is_expiration_close(self):
+        return bool(self.expiration_date < date.today() + timedelta(days=21))
+
+
+
     def __str__(self):
         return self.symbol
     
@@ -56,14 +77,17 @@ class Portfolio(models.Model):
     )
     name = models.CharField(max_length=32, default="Default") # may change this to username
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    stock = models.ManyToManyField(Stock, blank=True, null=True) # Either stock or option should not be null
-    option = models.ManyToManyField(Option, blank=True, null=True)
+    stock = models.ManyToManyField(Stock, blank=True)
+    option = models.ManyToManyField(Option, blank=True)
 
-    # negative if short, positive if long
-    quantity = models.IntegerField(default=0)
+   
     
     class Meta:
         ordering = ['owner']
+        unique_together = [['name', 'owner']]
+
+    
+    
 
     def __str__(self):
         return self.name

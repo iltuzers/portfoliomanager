@@ -5,6 +5,7 @@ from datetime import datetime
 import pandas as pd
 from django.views import generic
 from .utils import option_greeks, all_options
+from django.contrib.auth.mixins import LoginRequiredMixin
 #import json
  
 
@@ -50,3 +51,12 @@ class StockListView(generic.ListView):
     model = Stock
     context_object_name = 'stock_list'
     template_name = 'portfolio/stocks.html'
+
+
+class PortfolioListView(LoginRequiredMixin, generic.ListView):
+    model = Portfolio
+    template_name = 'portfolio/portfolio_list_current_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Portfolio.objects.filter(owner=self.request.user)

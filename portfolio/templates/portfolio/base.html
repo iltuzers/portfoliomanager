@@ -14,11 +14,12 @@
           <div class="col-md-auto">
             
             {% block sidebar %}
-              
-              <br/>
+
+
+             
               <div class="list-group">
                 <a href="{% url 'index' %}" class="list-group-item list-group-item-action list-group-item-info">Home</a>
-
+                <a href="{% url 'my-portfolio' %}" class="list-group-item list-group-item-action list-group-item-info">My Portfolio</a>
                 <a href="{% url 'stocks' %}" class="list-group-item list-group-item-action list-group-item-info">Watchlist</a>
                 <a href="{% url 'options' %}" class="list-group-item list-group-item-action list-group-item-info">Options</a>
               

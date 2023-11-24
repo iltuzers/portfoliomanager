@@ -1,0 +1,14 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {{ portfolio_list }}
+        {% for portfolio in portfolio_list %}
+            <p>{{ portfolio.option }}</p>
+            <p>{{ portfolio.stock_set.all }} : {{ portfolio.option_set.all }} </p>
+        {% endfor %}
+    {% else %}
+        <h1>User is not authenticated</h1>
+    {% endif %}
+{% endblock %}
