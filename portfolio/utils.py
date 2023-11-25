@@ -47,10 +47,12 @@ def option_greeks(ticker, riskfree_rate=0.054, min_dte=22, max_dte=50, min_delta
     puts_df = puts_df.assign(option_type='p')
     puts_df = puts_df.assign(underlying_price=underlying_price)
     puts_df = puts_df.assign(riskfree_rate=riskfree_rate)
-    
+    puts_df = puts_df.assign(underlying=ticker)
+
     calls_df = calls_df.assign(option_type='c')
     calls_df = calls_df.assign(underlying_price=underlying_price)
     calls_df = calls_df.assign(riskfree_rate=riskfree_rate)
+    calls_df = calls_df.assign(underlying=ticker)
 
     puts_df['dte'] = (puts_df['expiration_date'] - datetime.now().date()).apply(lambda dt: int(dt.days))
     calls_df['dte'] = (calls_df['expiration_date'] - datetime.now().date()).apply(lambda dt: int(dt.days))

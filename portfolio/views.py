@@ -37,7 +37,7 @@ def get_all_options(request):
     for ticker_query in ticker_queryset:
         tickers.append(ticker_query['symbol'])
     options_df = all_options(tickers)
-    options_df = options_df.loc[:, ['option_type', 'contractSymbol', 'expiration_date', 'dte', 'strike', 'volume', 'openInterest',  'IV', 'delta', 'gamma', 'theta', 'vega' ]]
+    options_df = options_df.loc[:, ['underlying', 'option_type', 'contractSymbol', 'expiration_date', 'dte', 'strike', 'volume', 'openInterest',  'IV', 'delta', 'gamma', 'theta', 'vega' ]]
     options_df = options_df.values.tolist()
     context = {
         'tickers': tickers,
@@ -60,3 +60,16 @@ class PortfolioListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Portfolio.objects.filter(owner=self.request.user)
+
+
+
+
+
+
+
+
+
+
+
+
+

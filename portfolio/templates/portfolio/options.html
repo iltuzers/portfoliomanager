@@ -2,10 +2,10 @@
 
 {% block content %}
     
-<h2>CALLS</h2>
     <table class="table table-bordered table-info">
         <thead>
           <tr>
+            <th scope="col">Underlying</th>
             <th scope="col">Option Type</th>
             <th scope="col">Symbol</th>
             <th scope="col">Expiration Date</th>
@@ -25,14 +25,14 @@
             
           {% for option in options %}
           <tr>
+              <td>{{ option.0 }}</td>
               <td>
-                {% if option.0 == 'p' %}
+                {% if option.1 == 'p' %}
                     Put
                 {% else %}
                     Call
                 {% endif %}
               </td>
-              <td>{{ option.1 }}</td>
               <td>{{ option.2 }}</td>
               <td>{{ option.3 }}</td>
               <td>{{ option.4 }}</td>
@@ -43,6 +43,7 @@
               <td>{{ option.9 }}</td>
               <td>{{ option.10 }}</td>
               <td>{{ option.11 }}</td>
+              <td>{{ option.12 }}</td>
               
           </tr>
            {% endfor %}

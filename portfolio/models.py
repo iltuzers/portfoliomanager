@@ -26,6 +26,14 @@ class Option(models.Model):
     expiration_date = models.DateField()
     strike = models.DecimalField(max_digits=10, decimal_places=2)
 
+    volume = models.IntegerField(default=0)
+    open_interest = models.IntegerField(default=0)
+    iv = models.DecimalField(max_digits=5, decimal_places=2)
+    delta = models.DecimalField(max_digits=5, decimal_places=2)
+    gamma = models.DecimalField(max_digits=5, decimal_places=2)
+    theta = models.DecimalField(max_digits=5, decimal_places=2)
+    vega = models.DecimalField(max_digits=5, decimal_places=2)
+
     OPTION_TYPE = (
         ('C', 'Call'),
         ('P', 'Put'),
